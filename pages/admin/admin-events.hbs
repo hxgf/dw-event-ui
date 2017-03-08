@@ -1,0 +1,32 @@
+<div class="admin-subnav">
+  <ul>
+    <li {{#if current_events_all}}class="current"{{/if}}><a href="/admin">HI OKC Events</a></li>
+    <li {{#if current_events_import}}class="current"{{/if}}><a href="/admin/events/import">Import Events</a></li>
+  </ul>
+</div>
+
+<div class="admin-control">
+  <a href="/event/edit/new" class="button"><i class="fi-plus"></i> New Event</a>
+</div>
+
+
+<!-- future search box + pagination -->
+
+{{#if events}}
+
+<ul class="events-list-admin">
+  {{#each events}}
+  <li data-id="{{_id}}">
+    <h2><a href="/event/{{url_title}}">{{title}}</a></h2>
+    <h3>{{date_rendered}}</h3>
+  </li>
+  {{/each}}
+</ul>
+
+{{else}}
+
+<div class="list-empty">
+  No events found :(
+</div>
+
+{{/if}}

@@ -1,0 +1,298 @@
+
+
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    {{#if can_edit}}
+
+    <form class="edit-form edit-event" action="/event/save" method="post">
+
+      <div class="row">
+        <div class="large-6 columns">
+
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Event Name</label>
+              <input type="text" name="title" value="{{data.title}}" />
+            </div>
+          </div>
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Category</label>
+              <select name="category_ids[]" multiple>
+                {{#each categories}}
+                <option value="{{_id}}" {{#if selected}}selected{{/if}}>{{title}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Tags</label>
+              <input type="text" name="tags" value="{{tags}}" />
+            </div>
+          </div>
+
+
+          <div class="row large-collapse">
+            <div class="large-6 columns">
+              <label>Start Date</label>
+              {{#if data.date_start}}
+              <input type="text" name="date_start" placeholder="MM/DD/YYYY" value="{{format_date_edit data.date_start}}" />
+              {{else}}
+              <input type="text" name="date_start" placeholder="MM/DD/YYYY" />
+              {{/if}}
+            </div>
+            <div class="large-6 columns">
+              <label>Start Time</label>
+              <input type="text" name="time_start" value="{{data.time_start}}" />
+            </div>
+          </div>
+
+
+          <div class="row large-collapse">
+            <div class="large-6 columns">
+              <label>End Date</label>
+              {{#if data.date_end}}
+              <input type="text" name="date_end" placeholder="MM/DD/YYYY" value="{{format_date_edit data.date_end}}" />
+              {{else}}
+              <input type="text" name="date_end" placeholder="MM/DD/YYYY" />
+              {{/if}}
+            </div>
+            <div class="large-6 columns">
+              <label>End Time</label>
+              <input type="text" name="time_end" value="{{data.time_end}}" />
+            </div>
+          </div>
+
+
+        </div>
+        <div class="large-6 columns">
+
+          <div class="row large-collapse upload-container-thumb">
+
+      			{{#if data.photo.medium}}
+      			<img src="{{data.photo.medium}}{{#if saved}}?v=2{{/if}}" />
+            {{else}}
+            <div class="placeholder">
+            </div>
+      			{{/if}}
+
+              <div class="control">
+                <!--[if lte IE 8]>
+                <button disabled>Upload Photo</button><br /><br />
+                <small>* Your browser doesn't support photo uploads. Please upgrade your browser to the latest version of Internet Explorer. Firefox and Google Chrome are also supported.</small>
+                <![endif]-->
+
+                <!--[if !lte IE 8]><!-->
+                <a class="thumb-upload-button"><i class="fi-plus"></i> New Photo</a>
+                {{#if crop_image}}<a class="crop-button" href="#crop-image"><i class="fi-crop"></i> Crop Thumbnail</a>{{/if}}
+                <!--<![endif]-->
+              </div>
+
+              <div class="thumb-upload-success">New photo added successfully.
+                <br /><br />
+                <small>* Some images take longer to process than others. Don't be alarmed if your changes aren't reflected immediately. Most photos are processed in less than one minute.</small><br /><br />
+              </div>
+              <div class="thumb-upload">
+                <div class="dropzone" id="dropzone"></div>
+                <div class="upload-instructions">* Large images work best (over 500px wide)</div>
+                {{!-- <img id="upload_button" src="/images/blank.gif" /> --}}
+              </div>
+    			</div>
+
+
+          <div class="row large-collapse">
+            <label>Related Video URL <small>YouTube or Vimeo only</small></label>
+            <input type="text" name="video_url" value="{{data.video_url}}" />
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+      <div class="row large-uncollapse">
+        <div class="large-12 columns">
+          <label>Event Details</label>
+          <textarea class="description" name="description">{{data.description}}</textarea>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="large-6 columns">
+
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Neighborhood(s)</label>
+              <select name="neighborhood_ids[]" multiple>
+                {{#each neighborhoods}}
+                <option value="{{_id}}" {{#if selected}}selected{{/if}}>{{title}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Location Venue</label>
+<!--
+  js: on keyup, show drop-down list w/ venues in the system
+                on click, populate venue_ data, otherwise it's a plain text field that lets you add all the info
+                checkbox - add as a new profile?
+-->
+
+              <input type="text" name="venue_title" value="{{data.venue.title}}" id="autocomplete" />
+              <input type="hidden" name="venue_id" value="{{data.venue.profile_id}}" />
+            </div>
+          </div>
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Venue Address</label>
+              <input type="text" name="venue_address" value="{{data.venue.address}}" />
+            </div>
+          </div>
+
+
+          <div class="row large-collapse">
+            <div class="large-8 columns">
+              <label>City</label>
+              <input type="text" name="venue_city" value="{{data.venue.city}}" />
+            </div>
+            <div class="large-4 columns">
+              <label>Zip</label>
+              <input type="text" name="venue_zip" value="{{data.venue.zip}}" />
+            </div>
+          </div>
+
+
+<!--
+           <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>
+                <input type="checkbox" name="map" {{#if data.venue.map_show}}checked="checked"{{/if}} /> include Google map link
+              </label>
+            </div>
+          </div> 
+-->
+
+
+
+
+        </div>
+
+
+        <div class="large-6 columns">
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Contact Name</label>
+              <input type="text" name="contact_name" value="{{data.contact.name}}" />
+            </div>
+          </div>
+          <div class="row large-collapse">
+            <div class="large-6 columns">
+              <label>Contact Phone</label>
+              <input type="text" name="contact_phone" value="{{data.contact.phone}}" />
+            </div>
+            <div class="large-6 columns">
+              <label>Contact Email</label>
+              <input type="text" name="contact_email" value="{{data.contact.email}}" />
+            </div>
+          </div>
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Related URL</label>
+              <input type="text" name="contact_url" value="{{data.contact.url}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row edit-save">
+        <div class="large-12 columns">
+          <input type="hidden" name="id" value="{{data._id}}" />
+          <button id="save">Save Event Details</button> {{#is data._id "!=" "new"}}
+          <!-- <a href="#" rel="delete-event" class="text-link" data-type="event" data-id="{{data._id}}"><i class="fi-x"></i> Delete Event</a> -->
+            {{#if is_admin}}
+            <select name="approved">
+              <option value="true" {{#if approved}}selected{{/if}}>Approved</option>
+              <option value="false" {{#unless approved}}selected{{/unless}}>Disapproved</option>
+            </select>
+            {{/if}}
+          {{/is}}
+
+        </div>
+      </div>
+
+    </form>
+  {{/if}} <!-- /can_edit -->
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    {{> sidebar}}
+  </div>
+</div>
+
+
+
+
+
+<script>
+
+var profiles = [];
+
+{{#each profiles}}profiles['{{_id}}'] = {
+  title: '{{addslashes title}}',
+  address: '{{addslashes address}}',
+  city: '{{addslashes city}}',
+  zip: '{{zip}}'
+};{{/each}}
+
+var lookup = [
+{{#each profiles}}{
+  value: '{{addslashes title}}', data: '{{_id}}'
+},{{/each}}
+];
+
+
+function jqueryLoaded() {
+	clearInterval(checker);
+
+  $('#autocomplete').autocomplete({
+    lookup: lookup,
+    onSelect: function (suggestion) {
+      $("input[name='venue_id']").val(suggestion.data);
+      $("input[name='venue_address']").val(profiles[suggestion.data].address);
+      $("input[name='venue_city']").val(profiles[suggestion.data].city);
+      $("input[name='venue_zip']").val(profiles[suggestion.data].zip);
+    }
+  });
+}
+
+function checkJquery() {
+	if (window.jQuery) {
+		jqueryLoaded();
+	}
+	if (checker == 0) {
+		checker = window.setInterval(checkJquery, 100);
+	}
+}
+
+var checker = 0;
+checkJquery();
+
+</script>
+

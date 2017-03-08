@@ -1,0 +1,68 @@
+
+
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    <div>
+	    {{#if data.photo}}
+      <img src="{{data.photo.medium}}" />
+      {{/if}}
+    </div>
+    <div>
+      <h2>{{data.title}}
+        {{#if can_edit}} <small><a href="/event/edit/{{data._id}}">(edit)</a></small>{{/if}}
+      </h2>
+
+      <h3>{{data.seo_date}}</h3>
+
+
+
+      {{#if data.time_start}}
+        <h3>{{data.time_start}}{{#if data.time_end}} - {{data.time_end}}{{/if}}</h3>
+      {{/if}}
+
+        <h5>{{#each data.neighborhoods_list}}{{#unless first}}, {{/unless}}<a href="/neighborhoods/{{url_title}}">{{title}}</a>{{/each}} &nbsp;</h5>
+        <h5>{{#each data.tags_list}}{{#unless first}}, {{/unless}}<a href="/tags/{{url_title}}">{{title}}</a>{{/each}}</h5>
+
+
+      <button>add to my calendar</button>
+
+    </div>
+
+    {{!-- gallery? videos? --}}
+
+    <div>
+      {{{nl2br data.description}}}
+    </div>
+    <div>
+      contact for more info
+        name
+        phone
+        email
+        web site
+    </div>
+
+    <div>
+      discussion
+        list
+          avatar
+          <a href="/profile-personal">screenname</a>
+          comment
+          date
+        post new
+          textarea
+          button
+    </div>
+
+
+
+
+	{{> comment-list}}
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    {{> sidebar}}
+  </div>
+</div>
+

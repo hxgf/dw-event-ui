@@ -1,0 +1,51 @@
+
+
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    {{!-- future search box + pagination --}}
+
+    {{#if events}}
+
+    <ul class="events-list">
+      {{#each events}}
+      <li data-id="{{_id}}">
+        <h2><a href="/event/{{this.url_title}}">{{title}}</a></h2>
+        <h3>{{date_rendered}}</h3>
+        <h5>{{#each neighborhoods_list}}{{#unless first}}, {{/unless}}<a href="/neighborhoods/{{url_title}}">{{title}}</a>{{/each}} &nbsp;</h5>
+        <h5>{{#each tags_list}}{{#unless first}}, {{/unless}}<a href="/tags/{{url_title}}">{{title}}</a>{{/each}}</h5>
+
+      </li>
+      {{/each}}
+    </ul>
+
+    {{else}}
+
+    <div class="list-empty">
+      No events found :(
+    </div>
+
+    {{/if}}
+
+
+
+
+
+    <!-- <div>
+      sensibly grouped lists of upcoming events
+    </div>
+
+
+    <div class="pagination">
+    {{#if paginate.previous}}<a href="/feed/{{paginate.previous_query}}">&larr; Previous page</a>{{/if}}
+    {{#if paginate.next}}<a href="/feed/{{paginate.next_query}}">Next page &rarr;</a>{{/if}}
+    </div> -->
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    <a href="/event/edit/new">new event</a>
+    {{> sidebar}}
+  </div>
+</div>
+

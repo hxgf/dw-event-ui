@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>{{title}}</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+
+	<link rel="stylesheet" href="/bower_components/foundation/css/normalize.css" />
+	<link rel="stylesheet" href="/bower_components/foundation/css/foundation.css" />
+
+	<link rel="stylesheet" href="/bower_components/smoke.js/smoke.css" />
+	<link rel="stylesheet" href="/bower_components/jquery-cropbox/jquery.cropbox.css" />
+	<link rel="stylesheet" href="/bower_components/fancybox/source/jquery.fancybox.css" />
+	<link rel="stylesheet" href="/bower_components/foundation-icon-fonts/foundation-icons.css" />
+	<link rel="stylesheet" href="/styles/dropzone-custom.css" />
+
+	<link rel="stylesheet" href="/compiled/app.css" />
+	<link rel="stylesheet" href="/compiled/styles-live.css" />
+
+
+</head>
+<body>
+
+{{#if is_admin}}
+
+	<div class="container">
+		<div class="head">
+
+			<a href="/"><img class="logo" src="/images/hiokc-logo.png" /></a>
+
+			<ul class="nav">
+				<li {{#if current_events}}class="current"{{/if}}><a href="/admin">events</a></li>
+				<li {{#if current_profiles}}class="current"{{/if}}><a href="/admin/profiles">profiles</a></li>
+				<li {{#if current_users}}class="current"{{/if}}><a href="/admin/users">users</a></li>
+			</ul>
+			<ul class="subnav">
+
+				<li><a href="/">&larr; back to HI OKC</a></li>
+		</ul>
+
+		</div>
+		<div class="content">
+			{{{body}}}
+		</div>
+	</div>
+
+	<div class="foot">
+
+    <div class="large-12 columns">
+			<span class="meta">
+				<a href="/dev/sitemap"><i class="fi-compass"></i>&nbsp; dev map</a>
+			</span>
+			<!-- <span class="copyright">&copy; {{year}} HI OKC</span> -->
+		</div>
+
+	</div>
+
+
+	<div class="loader-container">
+		<div class="loader three-quarters-loader"></div>
+	</div>
+
+
+	{{#if crop_image}}
+	<div id="crop-image">
+		<img class="cropimage" src="{{crop_image}}" />
+		<input name="x" type="hidden" />
+		<input name="y" type="hidden" />
+		<input name="w" type="hidden" />
+		<input name="h" type="hidden" />
+		<input name="stretch" type="hidden" />
+		<input name="source" value="{{crop_image}}" type="hidden" />
+		<button id="crop-save">Save</button>
+	</div>
+	{{/if}}
+
+
+
+
+
+
+
+{{/if}}
+
+
+
+
+	<!--[if lte IE 8]>
+	<script src="/bower_components/jquery-legacy/jquery.min.js"></script>
+	<![endif]-->
+
+	<!--[if !lte IE 8]><!-->
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<!--<![endif]-->
+
+	<script src="/bower_components/foundation/js/foundation.min.js"></script>
+	<script src="/bower_components/fastclick/lib/fastclick.js"></script>
+	<script src="/bower_components/jquery.cookie/jquery.cookie.js"></script>
+	<script src="/bower_components/modernizr/modernizr.js"></script>
+	<script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+
+	<script src="/bower_components/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
+	<script src="/bower_components/dropzone/dist/min/dropzone.min.js"></script>
+	<script src="/bower_components/smoke.js/smoke.min.js"></script>
+	<script src="/bower_components/jQcrop/jQcrop.js"></script>
+
+	<script src="/compiled/scripts-client.js"></script>
+
+</body>
+</html>

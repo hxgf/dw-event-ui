@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    <form class="search" action="/calendar/">
+      <input type="text" name="k" value="{{keyword}}" />
+      <button>Search</button>
+    </form>
+
+
+
+  {{#if events_list}}
+
+    <!-- <ul class="search-results-list small-block-grid-4 medium-block-grid-4 large-block-grid-4"> -->
+    <ul class="search-results-list events-list">
+    {{#each events_list}}
+      <li>
+        <h3><a href="/event/{{slug}}">{{title}}</a></h3>
+        <h4>{{seo_date}}</h4>
+        {{#if venue_title}}<h5>{{venue_title}}</h5>{{/if}}
+        <h5>{{venue_city}}, {{venue_state}}</h5>
+        {{#if host_name}}<h6>{{host_name}}</h6>{{/if}}
+        <h6><a href="/event/{{slug}}">more info</a></h6>
+      </li>
+    {{/each}}
+    </ul>
+
+    <div class="pagination">
+    {{#if paginate.previous}}<a href="/calendar/{{paginate.previous_query}}">&larr; Previous page</a>{{/if}}
+    {{#if paginate.next}}<a href="/calendar/{{paginate.next_query}}">Next page &rarr;</a>{{/if}}
+    </div>
+
+
+  {{else}}
+    {{#if keyword}}
+    <h4 class="no-results">No events found for <i>{{keyword}}</i></h4>
+    {{else}}
+    <h4 class="no-results">No events have been posted yet.</h4>
+    <h4 class="no-results"><a href="/calendar/edit/new">Post a new event here.</a></h4>
+    {{/if}}
+  {{/if}}
+
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+
+    <a href="/calendar/edit/new">new event</a>
+    {{> ads}}
+
+  </div>
+</div>

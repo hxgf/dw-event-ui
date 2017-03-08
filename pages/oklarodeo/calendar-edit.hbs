@@ -1,0 +1,182 @@
+<div class="row">
+  <div class="medium-10 columns content-focus calendar-edit">
+
+
+
+
+    <form action="/calendar/edit/process" method="post">
+
+      <label>Event Name</label>
+      <input type="text" name="title" value="{{data.title}}" />
+
+      <label>Hosted by</label>
+      <input type="text" name="host_name" value="{{data.host_name}}" />
+
+      <label>Start Date</label> <!-- fixit format -->
+      <input type="text" name="date_start" placeholder="MM/DD/YYYY" value="{{format_date_edit data.date_start}}" />
+
+      <label>Start Time</label>
+      <input type="text" name="time_start" value="{{data.time_start}}" />
+
+      <!-- <label>Start Time</label>
+        <select name="start_time_hour">
+          <option selected></option>
+          <option value="0" {{#e_start_0}}selected{{/e_start_0}}>12a</option>
+          <option value="1" {{#e_start_1}}selected{{/e_start_1}}>1</option>
+          <option value="2" {{#e_start_2}}selected{{/e_start_2}}>2</option>
+          <option value="3" {{#e_start_3}}selected{{/e_start_3}}>3</option>
+          <option value="4" {{#e_start_4}}selected{{/e_start_4}}>4</option>
+          <option value="5" {{#e_start_5}}selected{{/e_start_5}}>5</option>
+          <option value="6" {{#e_start_6}}selected{{/e_start_6}}>6</option>
+          <option value="7" {{#e_start_7}}selected{{/e_start_7}}>7</option>
+          <option value="8" {{#e_start_8}}selected{{/e_start_8}}>8</option>
+          <option value="9" {{#e_start_9}}selected{{/e_start_9}}>9</option>
+          <option value="10" {{#e_start_10}}selected{{/e_start_10}}>10</option>
+          <option value="11" {{#e_start_11}}selected{{/e_start_11}}>11</option>
+          <option value="12" {{#e_start_12}}selected{{/e_start_12}}>12p</option>
+          <option value="13" {{#e_start_13}}selected{{/e_start_13}}>1</option>
+          <option value="14" {{#e_start_14}}selected{{/e_start_14}}>2</option>
+          <option value="15" {{#e_start_15}}selected{{/e_start_15}}>3</option>
+          <option value="16" {{#e_start_16}}selected{{/e_start_16}}>4</option>
+          <option value="17" {{#e_start_17}}selected{{/e_start_17}}>5</option>
+          <option value="18" {{#e_start_18}}selected{{/e_start_18}}>6</option>
+          <option value="19" {{#e_start_19}}selected{{/e_start_19}}>7</option>
+          <option value="20" {{#e_start_20}}selected{{/e_start_20}}>8</option>
+          <option value="21" {{#e_start_21}}selected{{/e_start_21}}>9</option>
+          <option value="22" {{#e_start_22}}selected{{/e_start_22}}>10</option>
+          <option value="23" {{#e_start_23}}selected{{/e_start_23}}>11</option>
+        </select>&nbsp;
+        <select name="start_time_minute">
+          <option selected></option>
+          <option value="00" {{#y2_00}}selected{{/y2_00}}>00</option>
+          <option value="30" {{#y2_30}}selected{{/y2_30}}>30</option>
+        </select> -->
+
+
+      <label>End Date</label> <!-- fixit format -->
+      <input type="text" name="date_end" placeholder="MM/DD/YYYY" value="{{format_date_edit data.date_end}}" />
+
+      <label>End Time</label>
+      <input type="text" name="time_end" value="{{data.time_end}}" />
+
+      <!-- <label>End Time</label>
+          <select name="end_time_hour">
+          <option selected></option>
+          <option value="0" {{#f_end_0}}selected{{/f_end_0}}>12a</option>
+          <option value="1" {{#f_end_1}}selected{{/f_end_1}}>1</option>
+          <option value="2" {{#f_end_2}}selected{{/f_end_2}}>2</option>
+          <option value="3" {{#f_end_3}}selected{{/f_end_3}}>3</option>
+          <option value="4" {{#f_end_4}}selected{{/f_end_4}}>4</option>
+          <option value="5" {{#f_end_5}}selected{{/f_end_5}}>5</option>
+          <option value="6" {{#f_end_6}}selected{{/f_end_6}}>6</option>
+          <option value="7" {{#f_end_7}}selected{{/f_end_7}}>7</option>
+          <option value="8" {{#f_end_8}}selected{{/f_end_8}}>8</option>
+          <option value="9" {{#f_end_9}}selected{{/f_end_9}}>9</option>
+          <option value="10" {{#f_end_10}}selected{{/f_end_10}}>10</option>
+          <option value="11" {{#f_end_11}}selected{{/f_end_11}}>11</option>
+          <option value="12" {{#f_end_12}}selected{{/f_end_12}}>12p</option>
+          <option value="13" {{#f_end_13}}selected{{/f_end_13}}>1</option>
+          <option value="14" {{#f_end_14}}selected{{/f_end_14}}>2</option>
+          <option value="15" {{#f_end_15}}selected{{/f_end_15}}>3</option>
+          <option value="16" {{#f_end_16}}selected{{/f_end_16}}>4</option>
+          <option value="17" {{#f_end_17}}selected{{/f_end_17}}>5</option>
+          <option value="18" {{#f_end_18}}selected{{/f_end_18}}>6</option>
+          <option value="19" {{#f_end_19}}selected{{/f_end_19}}>7</option>
+          <option value="20" {{#f_end_20}}selected{{/f_end_20}}>8</option>
+          <option value="21" {{#f_end_21}}selected{{/f_end_21}}>9</option>
+          <option value="22" {{#f_end_22}}selected{{/f_end_22}}>10</option>
+          <option value="23" {{#f_end_23}}selected{{/f_end_23}}>11</option>
+        </select>
+        <select name="end_time_minute">
+          <option selected></option>
+          <option value="00" {{#z2_00}}selected{{/z2_00}}>00</option>
+          <option value="30" {{#z2_30}}selected{{/z2_30}}>30</option>
+        </select> -->
+
+
+
+
+      <label>Location Venue</label>
+      <input type="text" name="venue_title" value="{{data.venue_title}}" />
+
+
+      <label>Venue Address</label>
+      <input type="text" name="venue_address" value="{{data.venue_address}}" />
+
+
+      <label>City</label>
+      <input type="text" name="venue_city" value="{{data.venue_city}}" />
+
+
+      <label>State</label>
+      <input type="text" name="venue_state" value="{{data.venue_state}}" />
+
+
+      <label>Zip</label>
+      <input type="text" name="venue_zip" value="{{data.venue_zip}}" />
+
+
+      <label>
+        <input type="checkbox" name="map" /> include Google map link
+      </label>
+
+
+
+
+      <label>Contact Name</label>
+      <input type="text" name="contact_name" value="{{data.contact_name}}" />
+
+
+      <label>Contact Phone</label>
+      <input type="text" name="contact_phone" value="{{data.contact_phone}}" />
+
+
+      <label>Contact Email</label>
+      <input type="text" name="contact_email" value="{{data.contact_email}}" />
+
+
+
+
+
+
+      <label>Call In Phone</label>
+      <input type="text" name="callin_phone" value="{{data.callin_phone}}" />
+
+
+      <label>Call In Date / Time</label>
+      <input type="text" name="callin_date" value="{{data.callin_date}}" />
+
+
+
+
+
+      <label>Event Details</label>
+      <textarea name="description">{{data.description}}</textarea>
+
+
+      <label>Related URL</label>
+      <input type="text" name="contact_url" value="{{data.contact_url}}" />
+
+      {{#is id "!=" "new"}}
+      {{#if global.admin_token}}
+      <select name="approved">
+        <option value="false">Unapproved</option>
+        <option {{#if data.approved}}selected="selected"{{/if}} value="true">Approved</option>
+      </select>
+      {{/if}}
+      {{/is}}
+
+      <input type="hidden" name="id" value="{{id}}" />
+      <button>Save</button> {{#is id "!=" "new"}}&nbsp;&nbsp; <a href="#" rel="delete-calendar" data-type="event" data-id="{{_id}}">delete</a>{{/is}}
+
+    </form>
+
+  </div>
+  <div class="medium-2 columns sidebar">
+
+    <a href="/calendar/edit/new">new event</a>
+
+    {{> ads}}
+
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="admin-subnav">
+  <ul>
+    <li {{#if current_events_all}}class="current"{{/if}}><a href="/admin">HI OKC Events</a></li>
+    <li {{#if current_events_import}}class="current"{{/if}}><a href="/admin/events/import">Import Events</a></li>
+  </ul>
+</div>
+
+
+
+<!-- future: separate events by source, url paste field for a la carte importing
+<button onclick="aggregate_event('import', 'custom')" class="aggregate-import">import</button> -->
+
+
+{{#if events}}
+
+<ul class="events-import-list-admin">
+  {{#each events}}
+  <li data-id="{{_id}}">
+    <h2><a href="{{source_url}}" target="_blank">{{title}}</a></h2>
+    <h3>{{date}}</h3>
+    {{#if location}}<h3>{{location}}</h3>{{/if}}
+    {{#if subtitle}}<h3>{{subtitle}}</h3>{{/if}}
+    <div class="control">
+      <button onclick="aggregate_event('ignore', '{{_id}}')" class="aggregate-ignore">ignore</button> &nbsp;&nbsp;&nbsp;
+      <button onclick="aggregate_event('import', '{{_id}}')" class="aggregate-import">import</button>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+
+{{else}}
+
+<div class="list-empty">
+  No events found :(
+</div>
+
+{{/if}}
